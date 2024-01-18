@@ -249,13 +249,13 @@ def prepare_dataset(path, name):
 
 
 if __name__ == "__main__":
-    # datasets = ['FB15K-237', 'WN18RR', 'aristo-v4',
+    # datasets = ['FB15k-237', 'WN18RR', 'aristo-v4',
     #             'UMLS', 'KINSHIP', 'NATIONS']
-    # datasets = ['FB15K-237']
+    # datasets = ['FB15k-237']
     datasets = ['ogbl-wikikg2']
     datasets = ['ogbl-biokg']
     datasets = ['custom_graph']
-    datasets = ['FB15k-237', 'FB15K', 'NELL995']
+    datasets = ['FB15k-237', 'FB15k', 'NELL995']
     for d in datasets:
         print("Preparing dataset {}".format(d))
         try:

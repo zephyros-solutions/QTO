@@ -25,7 +25,7 @@ The codebase also comes with SoTA results on several KBC datasets. Echoing [prev
 - [CoDEx-M](https://github.com/facebookresearch/ssl-relation-prediction#codex-m)
 - [CoDEx-L](https://github.com/facebookresearch/ssl-relation-prediction#codex-l)
 - [WN18RR](https://github.com/facebookresearch/ssl-relation-prediction#wn18rr)
-- [FB15K-237](https://github.com/facebookresearch/ssl-relation-prediction#fb15k237)
+- [FB15k-237](https://github.com/facebookresearch/ssl-relation-prediction#fb15k237)
 - [Aristo-v4](https://github.com/facebookresearch/ssl-relation-prediction#aristo-v4)
 
 [:jigsaw: Pretrained Embeddings](https://github.com/facebookresearch/ssl-relation-prediction#pretrained-embeddings)
@@ -44,14 +44,14 @@ The codebase also comes with SoTA results on several KBC datasets. Echoing [prev
 
 ## News
 - 01/02/2022 Pretrained ComplEx embeddings on obgl-biokg/ogbl-wikikg2 are released. Check out them [here](https://github.com/facebookresearch/ssl-relation-prediction#pretrained-embeddings)
-- 16/12/2021 Pretrained ComplEx embeddings on FB15K-237/WN18RR/CoDEx-M/CoDEx-S are released. Check out them [here](https://github.com/facebookresearch/ssl-relation-prediction#pretrained-embeddings)
+- 16/12/2021 Pretrained ComplEx embeddings on FB15k-237/WN18RR/CoDEx-M/CoDEx-S are released. Check out them [here](https://github.com/facebookresearch/ssl-relation-prediction#pretrained-embeddings)
 - 01/12/2021 Hyper-parameters on CoDEx, ogbl-biokg and ogbl-wikikgv2 are released [here](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters)
 
 ## :zap: Link Prediction Results
 
 We attempt to include as many results as possible for recent knowledge graph completion datasets and release the [hyper-parameters](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters) to foster easy reproduction. Feel free to create an issue if you want to suggest additional datasets for us to include.
 
-Currently, we have results on the OGB link property prediction dataset [ogbl-biokg](https://ogb.stanford.edu/docs/linkprop/#ogbl-biokg), [ogbl-wikikg2](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2), [codex](https://arxiv.org/pdf/2009.07810.pdf), [Aristo-v4](https://allenai.org/data/tuple-kb), [FB15K237](https://www.microsoft.com/en-us/download/details.aspx?id=52312), and [WN18RR](https://github.com/TimDettmers/ConvE/blob/master/WN18RR.tar.gz). **All training was done on a single 16GB GPU except for ogbl-wikikg2 which was run on a 32GB GPU**.
+Currently, we have results on the OGB link property prediction dataset [ogbl-biokg](https://ogb.stanford.edu/docs/linkprop/#ogbl-biokg), [ogbl-wikikg2](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2), [codex](https://arxiv.org/pdf/2009.07810.pdf), [Aristo-v4](https://allenai.org/data/tuple-kb), [FB15k237](https://www.microsoft.com/en-us/download/details.aspx?id=52312), and [WN18RR](https://github.com/TimDettmers/ConvE/blob/master/WN18RR.tar.gz). **All training was done on a single 16GB GPU except for ogbl-wikikg2 which was run on a 32GB GPU**.
 
 ### ogbl-wikikg2
 
@@ -107,7 +107,7 @@ Note that the training of 50/100 dim takes about 3 days and that additional trai
 | ComplEx | No        | 0.487     | 0.441     | 0.501     | **0.580** |
 | ComplEx | Yes       | **0.488** | **0.443** | **0.505** | 0.578     |
 
-### FB15K237
+### FB15k237
 
 | Model   | Using RP? | MRR       | Hits@1    | Hits@3    | Hits@10   |
 | :------ | --------- | :-------- | :-------- | :-------- | :-------- |
@@ -129,7 +129,7 @@ Note that the training of 50/100 dim takes about 3 days and that additional trai
 
 | Dataset      | #Pred (including reciprocal predicates) | #Ent    | Model                  | Hyper-parameters                                                                                                                                     | Download Link                                                                           | #Params | File Size |
 | :----------- | :-------------------------------------- | :------ | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- | :------ | :-------- |
-| FB15K-237    | 474                                     | 14,541  | ComplEx(1000dim, ours) | [HPs](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters/fb15k237.md#best-run-for-fb15k237)                  | [Link](https://dl.fbaipublicfiles.com/ssl-relation-prediction/complex/fb15k237.zip)     | 30M     | 115MB     |
+| FB15k-237    | 474                                     | 14,541  | ComplEx(1000dim, ours) | [HPs](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters/fb15k237.md#best-run-for-fb15k237)                  | [Link](https://dl.fbaipublicfiles.com/ssl-relation-prediction/complex/fb15k237.zip)     | 30M     | 115MB     |
 | WN18RR       | 22                                      | 40,943  | ComplEx(1000dim, ours) | [HPs](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters/wn18rr.md#best-run-for-wn18rr)                      | [Link](https://dl.fbaipublicfiles.com/ssl-relation-prediction/complex/wn18rr.zip)       | 82M     | 313M      |
 | CoDEx-M      | 102                                     | 17,050  | ComplEx(1000dim, ours) | [HPs](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters/codex.md#best-run-for-codex-m)                      | [Link](https://dl.fbaipublicfiles.com/ssl-relation-prediction/complex/codex-m.zip)      | 34M     | 131M      |
 | CoDEx-S      | 84                                      | 2,034   | ComplEx(1000dim, ours) | [HPs](https://github.com/facebookresearch/ssl-relation-prediction/blob/main/doc/hyper-parameters/codex.md#best-run-for-codex-s)                      | [Link](https://dl.fbaipublicfiles.com/ssl-relation-prediction/complex/codex-s.zip)      | 4M      | 17M       |
@@ -187,9 +187,9 @@ You should obtain training curves similar as the figures below.
 - Name the file containing training triplets as `train`, validation triplets as `valid` and test triplets as `test`. The folder should look like this
 
 ```
-src_data/FB15K-237/train # Tab separated file, each row should be like `head    relation    tail`
-src_data/FB15K-237/valid # Tab separated file, each row should be like `head    relation    tail`
-src_data/FB15K-237/test # Tab separated file, each row should be like `head    relation    tail`
+src_data/FB15k-237/train # Tab separated file, each row should be like `head    relation    tail`
+src_data/FB15k-237/valid # Tab separated file, each row should be like `head    relation    tail`
+src_data/FB15k-237/test # Tab separated file, each row should be like `head    relation    tail`
 ```
 
 - After downloading the datasets, the preprocessing is quick and can be completed within a few minutes. First, edit `preprocess_datasets.py` and specify the dataset you want to run on, e.g.
@@ -205,22 +205,22 @@ mkdir data/
 python preprocess_datasets.py
 ```
 
-You can download together UMLS, Nations, Kinship, FB15K-237, WN18RR from [here](https://github.com/villmow/datasets_knowledge_embedding) and aristo-v4 from [here](https://allenai.org/data/tuple-kb). You can also download some datasets separately on [WN18RR](https://github.com/TimDettmers/ConvE/blob/master/WN18RR.tar.gz) and [FB15K-237](https://www.microsoft.com/en-us/download/details.aspx?id=52312).
+You can download together UMLS, Nations, Kinship, FB15k-237, WN18RR from [here](https://github.com/villmow/datasets_knowledge_embedding) and aristo-v4 from [here](https://allenai.org/data/tuple-kb). You can also download some datasets separately on [WN18RR](https://github.com/TimDettmers/ConvE/blob/master/WN18RR.tar.gz) and [FB15k-237](https://www.microsoft.com/en-us/download/details.aspx?id=52312).
 
 #### Train the model
 
 Use the option `score_rel` to enable the auxiliary relation prediction objective. Use the option `w_rel` to set the weight of the relation prediction objective.
 
-For example, the following command trains a ComplEx model **with** with the auxiliary relation prediction objective on FB15K-237
+For example, the following command trains a ComplEx model **with** with the auxiliary relation prediction objective on FB15k-237
 
 ```
-python main.py --dataset FB15K-237 --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
+python main.py --dataset FB15k-237 --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
 ```
 
-And the following command trains a ComplEx model **without** the auxiliary relation prediction objective on FB15K-237
+And the following command trains a ComplEx model **without** the auxiliary relation prediction objective on FB15k-237
 
 ```
-python main.py --dataset FB15K-237 --score_rel False --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
+python main.py --dataset FB15k-237 --score_rel False --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
 ```
 
 ## Dependencies

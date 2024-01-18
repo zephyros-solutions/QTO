@@ -441,7 +441,17 @@ def load_data(args, tasks):
 def main(args):
     set_global_seed(args.seed)
     tasks = args.tasks.split('.')
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        # device = torch.device("mps")
+        # Unfortunately there is no support for SparseMPS back-end, therefore 
+        device = torch.device("cpu")
+    else:
+        print("Warning: gpu not available")
+        device = torch.device("cpu")
+
     print(device)
 
     dataset_name = args.data_path.split('/')[1].split('-')[0]

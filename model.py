@@ -15,7 +15,7 @@ import os
 import sys
 import json
 sys.path.append('rp')
-from src.models import ComplEx
+from kbc.src.models import ComplEx
 
 def load_kbc(model_path, device, nentity, nrelation):
     model = ComplEx(sizes=[nentity, nrelation, nentity], rank=1000, init_size=1e-3)
@@ -67,7 +67,7 @@ class KGReasoning(nn.Module):
         dataset_name = args.data_path.split('/')[1].split('-')[0]
         if args.data_path.split('/')[1].split('-')[1] == "237":
             dataset_name += "-237"
-        filename = 'neural_adj/'+dataset_name+'_'+str(args.fraction)+'_'+str(args.thrshd)+'.pt'
+        filename = 'kbc/data/'+dataset_name+'/neural_adj/'+dataset_name+'_'+str(args.fraction)+'_'+str(args.thrshd)+'.pt'
         if os.path.exists(filename):
             self.relation_embeddings = torch.load(filename, map_location=device)
         else:

@@ -31,6 +31,10 @@ def set_seed(seed: int, is_deterministic=True):
         if is_deterministic is True:
             torch.backends.cudnn.deterministic = True
             torch.backends.cudnn.benchmark = False
+    elif torch.backends.mps.is_available():
+        torch.mps.manual_seed(seed)
+        if is_deterministic is True:
+            torch.backends.mps.torch.use_deterministic_algorithms(True)   
     return
 
 

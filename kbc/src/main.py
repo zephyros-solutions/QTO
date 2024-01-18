@@ -10,12 +10,13 @@ import sys
 import ast
 import argparse
 from engines import KBCEngine
+import torch
 
 
-datasets = ['FB15K-237', 'WN18RR', 'aristo-v4',
+datasets = ['FB15k-237', 'WN18RR', 'aristo-v4',
             'UMLS', 'KINSHIP', 'NATIONS',
             'custom_graph',
-            'ogbl-biokg', 'ogbl-wikikg2', 'FB15K', 'NELL995']
+            'ogbl-biokg', 'ogbl-wikikg2', 'FB15k', 'NELL995']
 
 parser = argparse.ArgumentParser(
     description="Relation Prediction as an Auxiliary Training Objective"
@@ -40,9 +41,17 @@ parser.add_argument(
     '--seed', default=0, type=str,
     help='For significance test'
 )
+if torch.cuda.is_available():
+    __device = torch.device("cuda")
+elif torch.backends.mps.is_available():
+    __device = torch.device("mps")
+else:
+    print("Warning: gpu not available")
+    __device = torch.device("cpu")
+
 parser.add_argument(
-    '--device', default='cuda', type=str,
-    help='Cuda or CPU'
+    '--device', default=__device, type=str,
+    help='Cuda, mps or CPU'
 )
 parser.add_argument(
     '--dataset', choices=datasets,
@@ -125,7 +134,7 @@ parser.add_argument(
     help='whether or not to cache per evaluation result'
 )
 parser.add_argument(
-    '--model_cache_path', default="../{dataset}/", # './tmp/model/{dataset}/{alias}/'
+    '--model_cache_path', default="./data/{dataset}/model/", # './tmp/model/{dataset}/{alias}/'
 )
 
 

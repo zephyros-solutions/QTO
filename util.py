@@ -14,12 +14,21 @@ flatten=lambda l: sum(map(flatten, l),[]) if isinstance(l,tuple) else [l]
 def parse_time():
     return time.strftime("%Y.%m.%d-%H:%M:%S", time.localtime())
 
-def set_global_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    np.random.seed(seed)
+def set_global_seed(seed, is_deterministic=True):
+    # set the seeds
     random.seed(seed)
-    torch.backends.cudnn.deterministic=True
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        if is_deterministic is True:
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
+    elif torch.backends.mps.is_available():
+        torch.mps.manual_seed(seed)
+        if is_deterministic is True:
+            torch.backends.mps.torch.use_deterministic_algorithms(True)   
+    return
 
 def eval_tuple(arg_return):
     """Evaluate a tuple string into a tuple."""

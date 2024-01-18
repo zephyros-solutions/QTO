@@ -27,13 +27,13 @@ python preprocess_datasets.py
 QTO requires a pretrained knowledge graph embedding (KGE) model for complex query answering. We utilize the KGE implementation from [ssl-relation-prediction](https://github.com/facebookresearch/ssl-relation-prediction).
 To train KGE (ComplEx) models on the three datasets, run the following commands under the `kbc/` folder.
 
-**FB15K**
+**FB15k**
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --dataset FB15K --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 100 --lmbda 0.01 --w_rel 0.1 --max_epochs 100
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset FB15k --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 100 --lmbda 0.01 --w_rel 0.1 --max_epochs 100
 ```
 **FB15k-237**
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --dataset FB15K-237 --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset FB15k-237 --score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --batch_size 1000 --lmbda 0.05 --w_rel 4 --max_epochs 100
 ```
 **NELL995**
 ```
@@ -44,13 +44,13 @@ CUDA_VISIBLE_DEVICES=0 python main.py --dataset NELL995 --score_rel True --model
 We provide commands to reproduce the results in our paper. Note that `--kbc_path` should be followed by the actual path to your pretained KGE model in the last step. `--fraction` is used to scatter the neural adjacency matrix to $n$ parts so that each part can be stored as a dense matrix on the GPU during calculation. Increase the fraction size in case of GPU out-of-memory.
 The command will first calculate the neural adjacency matrix using pretrained KGE model (saved under `kbc/{dataset}/`), and save it under folder `neural_adj/`.
 
-**FB15K**
+**FB15k**
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --data_path data/FB15k-betae --kbc_path kbc/FB15K/best_valid.model --fraction 10 --thrshd 0.001 --neg_scale 6 
+CUDA_VISIBLE_DEVICES=0 python main.py --data_path data/FB15k-betae --kbc_path kbc/FB15k/best_valid.model --fraction 10 --thrshd 0.001 --neg_scale 6 
 ```
 **FB15k-237**
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --data_path data/FB15k-237-betae --kbc_path kbc/FB15K-237/best_valid.model --fraction 10 --thrshd 0.0002 --neg_scale 3
+CUDA_VISIBLE_DEVICES=0 python main.py --data_path data/FB15k-237-betae --kbc_path kbc/FB15k-237/best_valid.model --fraction 10 --thrshd 0.0002 --neg_scale 3
 ```
 **NELL995**
 ```
