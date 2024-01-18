@@ -3,6 +3,7 @@
 mkdir kbc/data/FB15k/neural_adj
 mkdir kbc/data/FB15k-237/neural_adj
 mkdir kbc/data/NELL995/neural_adj
+mkdir results
 
 cd kbc
 python src/preprocess_datasets.py 
