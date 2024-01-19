@@ -15,7 +15,7 @@ import time
 import pickle
 from collections import defaultdict
 from tqdm import tqdm
-from util import flatten_query, list2tuple, parse_time, set_global_seed, eval_tuple
+from util import flatten_query, list2tuple, parse_time, set_global_seed, eval_tuple, check_mps_support
 from torchmetrics import SpearmanCorrCoef
 
 query_name_dict = {('e', ('r',)): '1p', 
@@ -445,9 +445,11 @@ def main(args):
     if torch.cuda.is_available():
         device = torch.device("cuda")
     elif torch.backends.mps.is_available():
-        # device = torch.device("mps")
-        # Unfortunately there is no support for SparseMPS back-end, therefore 
-        device = torch.device("cpu")
+        if check_mps_support():
+            device = torch.device("mps")
+        else:
+            print("Warning: mds is not supported")
+            device = torch.device("cpu")
     else:
         print("Warning: gpu not available")
         device = torch.device("cpu")

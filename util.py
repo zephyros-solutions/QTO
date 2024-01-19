@@ -56,3 +56,14 @@ def flatten_query(queries):
         tmp_queries = list(queries[query_structure])
         all_queries.extend([(query, query_structure) for query in tmp_queries])
     return all_queries
+
+
+def check_mps_support():
+    i = torch.tensor([[0, 1, 1], [2, 0, 2]])
+    v = torch.tensor([3, 4, 5], dtype=torch.float32)
+    try:
+        torch.sparse_coo_tensor(i, v, [2, 4], device = torch.device("mps"))
+    except NotImplementedError:
+        # Unfortunately there is no support for SparseMPS back-end
+        return False
+    return True

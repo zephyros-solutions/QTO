@@ -1,11 +1,21 @@
 
-
-mkdir kbc/data/FB15k/neural_adj
-mkdir kbc/data/FB15k-237/neural_adj
-mkdir kbc/data/NELL995/neural_adj
-mkdir results
+if [ ! -d "data/FB15k-237-betae" ]
+then
+    wget http://snap.stanford.edu/betae/KG_data.zip
+    mkdir data
+    mv KG_data.zip data
+    cd data
+    unzip KG_data.zip
+    cd -
+fi
 
 cd kbc
+
+if [ ! -d "data" ]
+then
+    mkdir data
+fi
+
 python src/preprocess_datasets.py 
 
 comm_args='--score_rel True --model ComplEx --rank 1000 --learning_rate 0.1 --max_epochs 100'
@@ -15,6 +25,14 @@ time CUDA_VISIBLE_DEVICES=0 python src/main.py --dataset FB15k-237 --batch_size 
 time CUDA_VISIBLE_DEVICES=0 python src/main.py --dataset NELL995 --batch_size 1000 --lmbda 0.05 --w_rel 0 ${comm_args}
 
 cd ..
+
+for my_dir in kbc/data/FB15k/neural_adj kbc/data/FB15k-237/neural_adj kbc/data/NELL995/neural_adj results
+do
+    if [ ! -d "${my_dir}" ]
+    then
+        mkdir -P ${my_dir}
+    fi
+done
 
 
 time CUDA_VISIBLE_DEVICES=0 python main.py --data_path data/FB15k-betae --kbc_path kbc/data/FB15k/model/best_valid.model --fraction 10 --thrshd 0.001 --neg_scale 6
