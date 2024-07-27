@@ -448,7 +448,7 @@ def main(args):
         if check_mps_support():
             device = torch.device("mps")
         else:
-            print("Warning: mds is not supported")
+            print("Warning: operations not supported with mds back-end")
             device = torch.device("cpu")
     else:
         print("Warning: gpu not available")
